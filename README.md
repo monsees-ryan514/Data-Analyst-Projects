@@ -16,8 +16,8 @@ The goals of this project are to:
 
 The first business insight I wanted to explore is the revenue changes over time and the performance of different categories of products. 
 
-- I started by getting the sum of the revenue for all the zip codes so I could map in Tableau where the sales are most successful. The Offset 18 is used to skip the zip codes with null revenue.
+- I started by getting the sum of the revenue for all the zip codes so I could map in Tableau where the sales are most successful.
 
 - I got the top 10 highest and lowest revenue categories of products and displayed their sales over time.
 
-- I calculated the revenue per month by using SUM() and grouping by month. I skipped 2 on the months because they appeared to lack complete data of sales due to being too recent.
+- I calculated the revenue per month by using SUM() and grouping by month. I skipped 2 of the months because they appeared to lack complete data of sales due to being too recent.
