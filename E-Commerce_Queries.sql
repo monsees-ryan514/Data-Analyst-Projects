@@ -89,36 +89,6 @@ INNER JOIN (
 
 
 
--- Gets the distance between the seller and buyer for each order and puts them in a category.
--- It then counts the number of reviews for each review score 1-5 and groups them by distance.
-WITH distance_table AS (SELECT cl.order_id, cl.zip_code AS customer_zip_code, sl.zip_code AS seller_zip_code, 
-ROUND(6371 * 2 * ASIN(
-        SQRT(
-            POWER(SIN(RADIANS(sl.latitude - cl.latitude) / 2), 2) +
-            COS(RADIANS(cl.latitude)) * 
-            COS(RADIANS(sl.latitude)) *
-            POWER(SIN(RADIANS(sl.longitude - cl.longitude) / 2), 2)
-        )
-    )) AS distance_km,
-	r.review_score
-FROM seller_loc sl
-INNER JOIN  customer_loc cl ON cl.order_id = sl.order_id
-INNER JOIN reviews r ON r.order_id = sl.order_id)
-
-SELECT COUNT(dt.review_score) AS count_reviews, dt.review_score, CASE WHEN dt.distance_km < 1000 THEN '0-1000' 
-WHEN dt.distance_km >= 1000 AND dt.distance_km < 2000 THEN '1000-2000'
-WHEN dt.distance_km >= 2000 AND dt.distance_km < 3000 THEN '2000-3000'
-WHEN dt.distance_km >= 3000 THEN '3000+'
-ELSE 'Unknown'
-END AS distance_group
-FROM distance_table dt
-WHERE dt.distance_km < 4000
-GROUP BY dt.review_score, distance_group
-ORDER BY distance_group, review_score
-
-
-
-
 
 -- Gets the distance between seller and buyer, the days the delivery was late, and review score.
 WITH distance_table AS (SELECT cl.order_id, cl.zip_code AS customer_zip_code, sl.zip_code AS seller_zip_code, 
