@@ -90,7 +90,7 @@ INNER JOIN (
 
 
 
--- Gets the distance between seller and buyer, the days the delivery was late, and review score.
+-- Gets the distance between seller and buyer, the days the delivery was late, review score and product weight to make a correlation chart.
 WITH distance_table AS (SELECT cl.order_id, cl.zip_code AS customer_zip_code, sl.zip_code AS seller_zip_code, 
 ROUND(6371 * 2 * ASIN(
         SQRT(
@@ -122,22 +122,25 @@ LEFT JOIN products p ON oi.product_id = p.product_id
 
 
 
--- Gets each seller's percentage on time deliveries and average review score if they have 10+ orders
-SELECT oi.seller_id, ROUND(AVG(CASE WHEN o.order_delivered_customer_date - o.order_estimated_delivery_date > 0
-THEN 0 ELSE 1 END), 2) AS percentage_on_time, ROUND(AVG(r.review_score), 1) AS avg_review_score FROM order_items oi
-LEFT JOIN reviews r ON r.order_id = oi.order_id
-LEFT JOIN orders o ON o.order_id = oi.order_id
-GROUP BY oi.seller_id
-HAVING COUNT(oi.order_id) > 9
-ORDER BY percentage_on_time
 
-
--- Total average percentage on time and review scores
+-- Total average percentage of on time deliveries and review scores
 SELECT ROUND(AVG(CASE WHEN o.order_delivered_customer_date - o.order_estimated_delivery_date > 0
 THEN 0 ELSE 1 END), 2) AS percentage_on_time, ROUND(AVG(r.review_score), 1) AS avg_review_score FROM orders o
 LEFT JOIN reviews r ON r.order_id = o.order_id
 ORDER BY percentage_on_time
 
+
+
+-- Gets the average review scores for the sellers who always deliver on time. Skips the NULL seller using OFFSET 1
+WITH best_sellers AS (SELECT COUNT(*), oi.seller_id AS seller, ROUND(AVG(r.review_score), 1) AS avg_review FROM orders o
+LEFT JOIN order_items oi ON oi.order_id = o.order_id
+LEFT JOIN reviews r ON r.order_id = o.order_id
+GROUP BY oi.seller_id
+HAVING COUNT(*) > 10 AND ROUND(AVG(CASE WHEN o.order_delivered_customer_date - o.order_estimated_delivery_date > 0
+THEN 0 ELSE 1 END), 2) = 1.00)
+
+SELECT * FROM best_sellers
+OFFSET 1
 
 
 
