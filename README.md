@@ -1,6 +1,6 @@
 # [Link To Tableau Dashboards](https://public.tableau.com/app/profile/ryan.monsees/viz/Book2_17720687463460/Dashboard1?publish=yes)
 # Brazilian E-Commerce Project 
-[Link to the data](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+[Link to E-Commerce data](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 All queries are in the E-Commerce_Queries.sql
 
@@ -26,8 +26,9 @@ This is where I checked how often deliveries arrived on time and how different f
 
 - Made a correlation chart of the different aspects of deliveries to check for relations.
 - Got the overall rate of on time deliveries and average review score.
-- Made a chart to show the relation between average review score and the seller's percentage of on time deliveries.
+- Made a chart to show the review scores of the sellers who always deliver on time.
 
 # LA Crime Statistics Project
+[Link to crime data](https://catalog.data.gov/dataset/crime-data-from-2020-to-present)
 
-
+All queries are in the Crime_Data_Queries.sql
