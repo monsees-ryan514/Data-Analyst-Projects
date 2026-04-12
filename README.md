@@ -16,25 +16,25 @@ The goals of this project are to:
 
 ## Dashboard 1: Product Sales
 
-The dashboard analyzes revenue changes over time and the performance of different categories of products. 
+This dashboard analyzes revenue changes over time and the performance of different categories of products. 
 
-- Aggregated revenue for all the zip codes so I could map in Tableau where the sales are most successful.
+- Aggregated revenue by zip code to visualize geographic sales distribution in Tableau.
 - Calculated the top 10 highest and lowest revenue categories of products and displayed their sales over time.
 - Calculated the revenue per month by using SUM() and grouping by month.
 - Excluded 2 incomplete months to ensure accuracy of trend analysis.
 
 ## Dashboard 2: Delivery Analysis
 
-This is where I checked how often deliveries arrived on time and how different factors of the delivery could be affecting review scores.
+This dashboard analyzes delivery performance and its impact on review scores.
 
 - Conducted a correlation analysis of the different aspects of deliveries to check for relations.
-- Got the overall rate of on time deliveries and average review score.
+- Calculated the overall rate of on time deliveries and average review score.
 - Analyzed review scores of the sellers who always deliver on time.
 
 ### Recommendations based on the data
 - Test demand for low-performing categories (e.g., CDs, fashion, flowers) through targeted promotions; consider discontinuation if performance remains weak.
 - Expand marketing efforts in central and northern Brazil, where sales are currently underrepresented compared to the southeast.
-- Promote the seller who have the highest reviews and best track record for delivering on time.
+- Promote the sellers who have the highest reviews and best track record for delivering on time.
 
 # LA Crime Statistics Project
 [Link to crime data](https://catalog.data.gov/dataset/crime-data-from-2020-to-present)
@@ -50,9 +50,9 @@ The goals of this project are to:
 
 ## Dashboard 3: Top Crime Categories
 
-I wanted to see which categories of crime are the most significant.
+This dashboard analyzes which categories of crime are the most significant.
 
-- Found the total number of crimes reported from 2020-2023.
+- Calculated the total number of reported crimes reported from 2020-2023.
 - Identified the top 10 crimes that increased the most during that period.
 - Showed how the top 10 most reported crimes changed over time.
 
@@ -63,7 +63,7 @@ I wanted to see which categories of crime are the most significant.
 
 ## Dashboard 5: Where crimes occur
 
-- Made a map of where all the top 10 crimes have occurred.
+- mapped the geographical distribution of the top 10 crimes have occurred.
 
 ### Recommendations based on the data
 
